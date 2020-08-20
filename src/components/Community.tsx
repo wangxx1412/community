@@ -7,9 +7,33 @@ interface Community {
   imgUrl: string;
   group: string;
 }
+
+interface Home {
+  id: string;
+  communityId: string;
+  price: number;
+  area: number;
+  type: string;
+}
+
+interface HomesList extends Array<Home> {}
+
 interface CommunityProps {
   community: Community;
+  homes: HomesList;
 }
+
+const calAvg = (homes: HomesList) => {
+  let sum = 0;
+  homes.forEach((home) => {
+    sum += home.price;
+  });
+  if (homes.length) {
+    return `$${Math.round((sum / homes.length) * 100) / 100}`;
+  } else {
+    return "N/A";
+  }
+};
 
 export const Community = (props: CommunityProps): JSX.Element => {
   return (
@@ -20,10 +44,7 @@ export const Community = (props: CommunityProps): JSX.Element => {
         <Card.Meta>{props.community.group}</Card.Meta>
       </Card.Content>
       <Card.Content extra>
-        <div>
-          <Icon name="dollar sign" />
-          Average Price
-        </div>
+        <div>{`Average Price: ${calAvg(props.homes)}`}</div>
       </Card.Content>
     </Card>
   );

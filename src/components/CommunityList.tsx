@@ -43,7 +43,15 @@ export const CommunityList = (props: CommunityListProps): JSX.Element => {
             return result;
           })
           .map((community) => {
-            return <Community community={community} key={community.id} />;
+            return (
+              <Community
+                community={community}
+                key={community.id}
+                homes={props.homes.filter(
+                  (home) => home.communityId === community.id
+                )}
+              />
+            );
           })
       ) : (
         <div>Loading...</div>

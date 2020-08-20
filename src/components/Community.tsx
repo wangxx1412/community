@@ -1,5 +1,15 @@
 import React from "react";
 
-export default function Community() {
-  return <div>Single Community</div>;
+interface Community {
+  id: string;
+  name: string;
+  imgUrl: string;
+  group: string;
 }
+interface CommunityProps {
+  community: Community;
+}
+
+export const Community = (props: CommunityProps): JSX.Element => {
+  return <div>Single Community</div>;
+};

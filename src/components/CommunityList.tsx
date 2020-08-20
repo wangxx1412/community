@@ -1,20 +1,30 @@
-import React, { useEffect, useState } from "react";
-import axios, { AxiosResponse } from "axios";
+import React from "react";
 
-import Community from "./Community";
+import { Community } from "./Community";
 
-const communityUrl =
-  "https://a18fda49-215e-47d1-9dc6-c6136a04a33a.mock.pstmn.io/communities";
-
-export default function CommunityList() {
-  const [communities, setCommunities] = useState();
-
-  useEffect(() => {
-    axios.get(communityUrl).then((res: AxiosResponse) => {
-      console.log(res.data);
-      setCommunities(res.data);
-    });
-  }, []);
-
-  return <div>{communities ? <Community /> : <div>Loading...</div>}</div>;
+interface Community {
+  id: string;
+  name: string;
+  imgUrl: string;
+  group: string;
 }
+
+interface CommunitiesList extends Array<Community> {}
+
+interface CommunityListProps {
+  communities: CommunitiesList;
+}
+
+export const CommunityList = (props: CommunityListProps): JSX.Element => {
+  return (
+    <div>
+      {props.communities ? (
+        props.communities.map((community) => {
+          return <Community community={community} />;
+        })
+      ) : (
+        <div>Loading...</div>
+      )}
+    </div>
+  );
+};

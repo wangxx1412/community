@@ -1,5 +1,7 @@
-import React from "react";
-import { Card, Icon, Image } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Card, Image } from "semantic-ui-react";
+
+import notfound from "../assets/image-not-found.png";
 
 interface Community {
   id: string;
@@ -36,9 +38,18 @@ const calAvg = (homes: HomesList) => {
 };
 
 export const Community = (props: CommunityProps): JSX.Element => {
+  const [imgUrl, setImgUrl] = useState(props.community.imgUrl);
+  const handleError = () => {
+    setImgUrl(notfound);
+  };
   return (
     <Card>
-      <Image src={props.community.imgUrl} wrapped ui={false} />
+      <Image
+        src={imgUrl || notfound}
+        onError={() => handleError()}
+        wrapped
+        ui={false}
+      />
       <Card.Content>
         <Card.Header>{props.community.name}</Card.Header>
         <Card.Meta>{props.community.group}</Card.Meta>

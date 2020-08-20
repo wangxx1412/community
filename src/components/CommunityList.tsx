@@ -20,7 +20,7 @@ export const CommunityList = (props: CommunityListProps): JSX.Element => {
     <div>
       {props.communities ? (
         props.communities.map((community) => {
-          return <Community community={community} />;
+          return <Community community={community} key={community.id} />;
         })
       ) : (
         <div>Loading...</div>

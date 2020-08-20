@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
-import { Container, Segment } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 
 import { CommunityList } from "./CommunityList";
 
@@ -29,11 +29,13 @@ export default function App() {
 
   return (
     <div>
-      {communities ? (
-        <CommunityList communities={communities} />
-      ) : (
-        <div>Loading...</div>
-      )}
+      <Container>
+        {communities ? (
+          <CommunityList communities={communities} />
+        ) : (
+          <div>Loading...</div>
+        )}
+      </Container>
     </div>
   );
 }

@@ -53,6 +53,9 @@ export const Community = (props: CommunityProps): JSX.Element => {
       <Card.Content>
         <Card.Header>{props.community.name}</Card.Header>
         <Card.Meta>{props.community.group}</Card.Meta>
+        <Card.Description>
+          {`${props.homes.length} homes found in this community`}
+        </Card.Description>
       </Card.Content>
       <Card.Content extra>
         <div>{`Average Price: ${calAvg(props.homes)}`}</div>

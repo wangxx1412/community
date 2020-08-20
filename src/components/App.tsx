@@ -33,28 +33,42 @@ interface HomesList extends Array<Home> {}
 export default function App() {
   const [communities, setCommunities] = useState<CommunitiesList | null>(null);
   const [homes, setHomes] = useState<HomesList | null>(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     //Fetch communities data
-    axios.get(communityUrl).then((res: AxiosResponse) => {
-      const communitiesList = res.data as CommunitiesList;
-      setCommunities(communitiesList);
-    });
+    axios
+      .get(communityUrl)
+      .then((res: AxiosResponse) => {
+        const communitiesList = res.data as CommunitiesList;
+        setCommunities(communitiesList);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+
     //Fetch homes data
-    axios.get(homeUrl).then((res: AxiosResponse) => {
-      const homesList = res.data as HomesList;
-      setHomes(homesList);
-    });
+    axios
+      .get(homeUrl)
+      .then((res: AxiosResponse) => {
+        const homesList = res.data as HomesList;
+        setHomes(homesList);
+      })
+      .catch((error) => {
+        setError(error);
+      });
   }, []);
 
   return (
     <div>
       <Container>
-        {communities && homes ? (
-          <CommunityList communities={communities} homes={homes} />
-        ) : (
-          <div>Loading...</div>
-        )}
+        {error === null &&
+          (communities && homes ? (
+            <CommunityList communities={communities} homes={homes} />
+          ) : (
+            <div>Loading...</div>
+          ))}
+        {error !== null && <h2>Error occurs when fetching data</h2>}
       </Container>
     </div>
   );

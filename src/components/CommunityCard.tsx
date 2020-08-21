@@ -2,23 +2,7 @@ import React, { useState } from "react";
 import { Card, Image } from "semantic-ui-react";
 
 import notfound from "../assets/image-not-found.png";
-
-interface Community {
-  id: string;
-  name: string;
-  imgUrl: string;
-  group: string;
-}
-
-interface Home {
-  id: string;
-  communityId: string;
-  price: number;
-  area: number;
-  type: "House" | "Condo" | "Townhome";
-}
-
-interface HomesList extends Array<Home> {}
+import { Community, HomesList } from "../interfaces";
 
 interface CommunityProps {
   community: Community;
@@ -37,7 +21,7 @@ const calAvg = (homes: HomesList) => {
   }
 };
 
-export const Community = (props: CommunityProps): JSX.Element => {
+export const CommunityCard = (props: CommunityProps): JSX.Element => {
   const [imgUrl, setImgUrl] = useState(props.community.imgUrl);
   const handleError = () => {
     setImgUrl(notfound);

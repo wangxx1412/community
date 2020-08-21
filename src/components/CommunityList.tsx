@@ -1,26 +1,8 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
 
-import { Community } from "./Community";
-
-interface Community {
-  id: string;
-  name: string;
-  imgUrl: string;
-  group: string;
-}
-
-interface CommunitiesList extends Array<Community> {}
-
-interface Home {
-  id: string;
-  communityId: string;
-  price: number;
-  area: number;
-  type: "House" | "Condo" | "Townhome";
-}
-
-interface HomesList extends Array<Home> {}
+import { Community, CommunitiesList, HomesList } from "../interfaces";
+import { CommunityCard } from "./CommunityCard";
 
 interface CommunityListProps {
   communities: CommunitiesList;
@@ -50,7 +32,7 @@ export const CommunityList = (props: CommunityListProps): JSX.Element => {
           )
           .map((community) => {
             return (
-              <Community
+              <CommunityCard
                 community={community}
                 key={community.id}
                 homes={props.homes.filter(

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { Dropdown, Menu, Container, Icon, Segment } from "semantic-ui-react";
 
+import { CommunitiesList, HomesList } from "../interfaces";
 import { CommunityList } from "./CommunityList";
 
 const communityUrl =
@@ -9,25 +10,6 @@ const communityUrl =
 
 const homeUrl =
   "https://a18fda49-215e-47d1-9dc6-c6136a04a33a.mock.pstmn.io/homes";
-
-interface Community {
-  id: string;
-  name: string;
-  imgUrl: string;
-  group: string;
-}
-
-interface CommunitiesList extends Array<Community> {}
-
-interface Home {
-  id: string;
-  communityId: string;
-  price: number;
-  area: number;
-  type: "House" | "Condo" | "Townhome";
-}
-
-interface HomesList extends Array<Home> {}
 
 export default function App() {
   const [communities, setCommunities] = useState<CommunitiesList | null>(null);

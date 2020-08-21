@@ -43,7 +43,7 @@ export const Community = (props: CommunityProps): JSX.Element => {
     setImgUrl(notfound);
   };
   return (
-    <Card>
+    <Card centered>
       <Image
         src={imgUrl || notfound}
         onError={() => handleError()}

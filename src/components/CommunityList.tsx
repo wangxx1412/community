@@ -1,4 +1,5 @@
 import React from "react";
+import { Grid } from "semantic-ui-react";
 
 import { Community } from "./Community";
 
@@ -28,7 +29,7 @@ interface CommunityListProps {
 
 export const CommunityList = (props: CommunityListProps): JSX.Element => {
   return (
-    <div>
+    <Grid columns={3} style={{ marginTop: "50px" }}>
       {props.communities ? (
         props.communities
           .sort((a: Community, b: Community) => {
@@ -56,6 +57,6 @@ export const CommunityList = (props: CommunityListProps): JSX.Element => {
       ) : (
         <div>Loading...</div>
       )}
-    </div>
+    </Grid>
   );
 };

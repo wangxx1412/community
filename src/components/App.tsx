@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
-import { Container } from "semantic-ui-react";
+import { Menu, Container, Segment } from "semantic-ui-react";
 
 import { CommunityList } from "./CommunityList";
 
@@ -19,13 +19,12 @@ interface Community {
 
 interface CommunitiesList extends Array<Community> {}
 
-// Todo: change type of type
 interface Home {
   id: string;
   communityId: string;
   price: number;
   area: number;
-  type: string;
+  type: "House" | "Condo" | "Townhome";
 }
 
 interface HomesList extends Array<Home> {}
@@ -61,10 +60,19 @@ export default function App() {
 
   return (
     <div>
+      <Segment inverted>
+        <Menu inverted secondary>
+          <Container>
+            <Menu.Item>YYCHomes</Menu.Item>
+          </Container>
+        </Menu>
+      </Segment>
       <Container>
         {error === null &&
           (communities && homes ? (
-            <CommunityList communities={communities} homes={homes} />
+            <div>
+              <CommunityList communities={communities} homes={homes} />
+            </div>
           ) : (
             <div>Loading...</div>
           ))}

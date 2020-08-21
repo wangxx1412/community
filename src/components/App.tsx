@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
-import { Dropdown, Menu, Container, Icon, Segment } from "semantic-ui-react";
+import {
+  Dropdown,
+  Menu,
+  Container,
+  Icon,
+  Segment,
+  Dimmer,
+  Loader,
+  Image,
+} from "semantic-ui-react";
 
 import { CommunitiesList, HomesList, PriceRangeTypes } from "../interfaces";
 import { CommunityList } from "./CommunityList";
@@ -101,7 +110,13 @@ export default function App() {
               />
             </div>
           ) : (
-            <div>Loading...</div>
+            <Segment>
+              <Dimmer active inverted>
+                <Loader size="large">Loading</Loader>
+              </Dimmer>
+
+              <Image src="https://react.semantic-ui.com/images/wireframe/paragraph.png" />
+            </Segment>
           ))}
         {error !== null && <h2>Error occurs when fetching data</h2>}
       </Container>

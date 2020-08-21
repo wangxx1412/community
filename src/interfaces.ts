@@ -16,3 +16,8 @@ export interface Home {
 }
 
 export interface HomesList extends Array<Home> {}
+
+export interface PriceRangeTypes {
+  min: number | "";
+  max: number | "";
+}

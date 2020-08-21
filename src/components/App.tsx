@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { Dropdown, Menu, Container, Icon, Segment } from "semantic-ui-react";
 
-import { CommunitiesList, HomesList } from "../interfaces";
+import { CommunitiesList, HomesList, PriceRangeTypes } from "../interfaces";
 import { CommunityList } from "./CommunityList";
+import { PriceRange } from "./PriceRange";
 
 const communityUrl =
   "https://a18fda49-215e-47d1-9dc6-c6136a04a33a.mock.pstmn.io/communities";
@@ -16,6 +17,10 @@ export default function App() {
   const [homes, setHomes] = useState<HomesList | null>(null);
   const [group, setGroup] = useState<String>("All");
   const [error, setError] = useState(null);
+  const [pirceRange, setPriceRange] = useState<PriceRangeTypes>({
+    min: "",
+    max: "",
+  });
 
   useEffect(() => {
     //Fetch communities data
@@ -44,6 +49,10 @@ export default function App() {
   // Get the group text of dropdown item
   const getGroup = (e: any) => {
     setGroup(e.target.textContent);
+  };
+
+  const getPriceRange = (min: number | "", max: number | "") => {
+    setPriceRange({ min, max });
   };
 
   return (
@@ -80,6 +89,7 @@ export default function App() {
         </Menu>
       </Segment>
       <Container>
+        <PriceRange getPriceRange={getPriceRange} />
         {error === null &&
           (communities && homes ? (
             <div>

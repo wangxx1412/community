@@ -15,7 +15,7 @@ interface Home {
   communityId: string;
   price: number;
   area: number;
-  type: string;
+  type: "House" | "Condo" | "Townhome";
 }
 
 interface HomesList extends Array<Home> {}
@@ -54,7 +54,9 @@ export const Community = (props: CommunityProps): JSX.Element => {
         <Card.Header>{props.community.name}</Card.Header>
         <Card.Meta>{props.community.group}</Card.Meta>
         <Card.Description>
-          {`${props.homes.length} homes found in this community`}
+          {`${props.homes.length} ${
+            props.homes.length === 1 ? "home" : "homes"
+          } found in this community`}
         </Card.Description>
       </Card.Content>
       <Card.Content extra>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
-import { Menu, Container, Segment } from "semantic-ui-react";
+import { Dropdown, Menu, Container, Icon, Segment } from "semantic-ui-react";
 
 import { CommunityList } from "./CommunityList";
 
@@ -32,6 +32,7 @@ interface HomesList extends Array<Home> {}
 export default function App() {
   const [communities, setCommunities] = useState<CommunitiesList | null>(null);
   const [homes, setHomes] = useState<HomesList | null>(null);
+  const [group, setGroup] = useState<String>("All");
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -58,12 +59,40 @@ export default function App() {
       });
   }, []);
 
+  const getGroup = (e: any) => {
+    setGroup(e.target.textContent);
+  };
+
   return (
     <div>
       <Segment inverted>
         <Menu inverted secondary>
           <Container>
-            <Menu.Item>YYCHomes</Menu.Item>
+            <Menu.Item>
+              <Icon name="home" />
+              YYCHomes
+            </Menu.Item>
+            <Menu.Menu position="right">
+              <Dropdown item text="Group">
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={(e) => getGroup(e)}>
+                    All
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={(e) => getGroup(e)}>
+                    South East
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={(e) => getGroup(e)}>
+                    South West
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={(e) => getGroup(e)}>
+                    North East
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={(e) => getGroup(e)}>
+                    North West
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Menu.Menu>
           </Container>
         </Menu>
       </Segment>
@@ -71,7 +100,11 @@ export default function App() {
         {error === null &&
           (communities && homes ? (
             <div>
-              <CommunityList communities={communities} homes={homes} />
+              <CommunityList
+                communities={communities}
+                homes={homes}
+                group={group}
+              />
             </div>
           ) : (
             <div>Loading...</div>

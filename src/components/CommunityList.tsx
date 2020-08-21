@@ -17,7 +17,7 @@ interface Home {
   communityId: string;
   price: number;
   area: number;
-  type: string;
+  type: "House" | "Condo" | "Townhome";
 }
 
 interface HomesList extends Array<Home> {}
@@ -25,6 +25,7 @@ interface HomesList extends Array<Home> {}
 interface CommunityListProps {
   communities: CommunitiesList;
   homes: HomesList;
+  group: String;
 }
 
 export const CommunityList = (props: CommunityListProps): JSX.Element => {
@@ -43,6 +44,10 @@ export const CommunityList = (props: CommunityListProps): JSX.Element => {
             }
             return result;
           })
+          .filter(
+            (community) =>
+              community.group === props.group || props.group === "All"
+          )
           .map((community) => {
             return (
               <Community

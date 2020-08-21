@@ -17,7 +17,7 @@ export default function App() {
   const [homes, setHomes] = useState<HomesList | null>(null);
   const [group, setGroup] = useState<String>("All");
   const [error, setError] = useState(null);
-  const [pirceRange, setPriceRange] = useState<PriceRangeTypes>({
+  const [priceRange, setPriceRange] = useState<PriceRangeTypes>({
     min: "",
     max: "",
   });
@@ -97,6 +97,7 @@ export default function App() {
                 communities={communities}
                 homes={homes}
                 group={group}
+                priceRage={priceRange}
               />
             </div>
           ) : (

@@ -36,7 +36,11 @@ export const PriceRange = (props: PriceRangeProps): JSX.Element => {
             onChange={handleMaxChange}
           />
         </Form.Group>
-        <Button type="submit" onClick={() => props.getPriceRange(min, max)}>
+        <Button
+          type="submit"
+          onClick={() => props.getPriceRange(min, max)}
+          primary
+        >
           Confirm
         </Button>
         <Button
@@ -44,8 +48,9 @@ export const PriceRange = (props: PriceRangeProps): JSX.Element => {
             setMin("");
             setMax("");
           }}
+          color="red"
         >
-          Reset
+          Reset Form
         </Button>
       </Form>
     </Segment>

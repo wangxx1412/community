@@ -1,13 +1,19 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
 
-import { Community, CommunitiesList, HomesList } from "../interfaces";
+import {
+  Community,
+  CommunitiesList,
+  HomesList,
+  PriceRangeTypes,
+} from "../interfaces";
 import { CommunityCard } from "./CommunityCard";
 
 interface CommunityListProps {
   communities: CommunitiesList;
   homes: HomesList;
   group: String;
+  priceRage: PriceRangeTypes;
 }
 
 export const CommunityList = (props: CommunityListProps): JSX.Element => {
@@ -35,9 +41,14 @@ export const CommunityList = (props: CommunityListProps): JSX.Element => {
               <CommunityCard
                 community={community}
                 key={community.id}
-                homes={props.homes.filter(
-                  (home) => home.communityId === community.id
-                )}
+                homes={props.homes
+                  .filter((home) => home.communityId === community.id)
+                  .filter(
+                    (home) =>
+                      (home.price >= props.priceRage.min &&
+                        home.price <= props.priceRage.max) ||
+                      props.priceRage.min === ""
+                  )}
               />
             );
           })

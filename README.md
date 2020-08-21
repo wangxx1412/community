@@ -35,3 +35,4 @@ npm start
 - Home data doesn't contain imgurl, can work more on home's page with react-router given home imgurl
 - Styling can be more detailed and more beautiful
 - Can implement pagination or lazy-loading with more time
+- Can do more filter functionality based on home type, area, etc...

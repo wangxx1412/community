@@ -41,6 +41,7 @@ export default function App() {
       });
   }, []);
 
+  // Get the group text of dropdown item
   const getGroup = (e: any) => {
     setGroup(e.target.textContent);
   };

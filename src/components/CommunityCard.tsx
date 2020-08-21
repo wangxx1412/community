@@ -9,6 +9,7 @@ interface CommunityProps {
   homes: HomesList;
 }
 
+// For calculate average price
 const calAvg = (homes: HomesList) => {
   let sum = 0;
   homes.forEach((home) => {
@@ -23,9 +24,12 @@ const calAvg = (homes: HomesList) => {
 
 export const CommunityCard = (props: CommunityProps): JSX.Element => {
   const [imgUrl, setImgUrl] = useState(props.community.imgUrl);
+
+  //Handle error of imgurl
   const handleError = () => {
     setImgUrl(notfound);
   };
+
   return (
     <Card centered>
       <Image

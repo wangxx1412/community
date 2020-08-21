@@ -2,9 +2,9 @@
 
 YYCHome is an tiny app of Calgary Real Estate resources based on React and TypeScript.
 
-## Final Product
+## SceenShot
 
-!["Screenshot of Home Page"](https://github.com/wangxx1412/scheduler/blob/master/docs/Interview-Scheduler.png?raw=true)
+!["Screenshot of Home Page"](https://github.com/wangxx1412/community/blob/master/docs/Home.png?raw=true)
 
 ## Setup
 
@@ -14,7 +14,7 @@ Clone this repo and Install dependencies with:
 npm install
 ```
 
-## Running Webpack Development Server
+## Run
 
 ```sh
 npm start
@@ -22,7 +22,7 @@ npm start
 
 ## Functionalities
 
-- Fetch Communities and Homes from RESTApis
+- Fetch and display communities and homes data from RESTApis
 - Sort Communities results alphabetically
 - User can filter results based on group
 - Mobile-friendly
